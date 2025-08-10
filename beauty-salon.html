@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Salon - あなたのなりたいをかなえるサロン</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴ Pro W3', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #fff 0%, #f8e8e8 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d48fb1;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d48fb1;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #ad6a8f;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #d48fb1 0%, #c2849e 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 143, 177, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 143, 177, 0.6);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ad6a8f;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #d48fb1;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #ad6a8f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .price-table {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .price-table-header {
+            background: linear-gradient(135deg, #d48fb1 0%, #c2849e 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #fce4ec;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-item:nth-child(even) {
+            background-color: #fef7f7;
+        }
+
+        .price-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .price-amount {
+            font-weight: bold;
+            color: #ad6a8f;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #fefefe 0%, #fce4ec 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact {
+            background: #fff;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: #fef7f7;
+            border-radius: 15px;
+        }
+
+        .contact-item h3 {
+            color: #ad6a8f;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #ad6a8f 0%, #8e5678 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .price-item {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Beauty Salon</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">ホーム</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#prices">料金</a></li>
+                        <li><a href="#about">サロンについて</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>あなたのなりたいをかなえるサロン</h1>
+            <p>美しさと癒しを追求する、女性のための特別な空間</p>
+            <a href="#contact" class="cta-button">ご予約はこちら</a>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">サービス</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>フェイシャルエステ</h3>
+                    <p>お肌の悩みに合わせたオーダーメイドトリートメント。美しい素肌を取り戻します。</p>
+                </div>
+                <div class="service-card">
+                    <h3>ボディエステ</h3>
+                    <p>全身のリラクゼーションと美容効果を同時に。理想のボディラインをサポートします。</p>
+                </div>
+                <div class="service-card">
+                    <h3>脱毛</h3>
+                    <p>最新の脱毛技術で、痛みを最小限に。つるつる美肌を実現します。</p>
+                </div>
+                <div class="service-card">
+                    <h3>ネイルケア</h3>
+                    <p>指先から美しく。豊富なデザインとケアメニューをご用意しています。</p>
+                </div>
+                <div class="service-card">
+                    <h3>アロマテラピー</h3>
+                    <p>香りの力で心身をリラックス。ストレス解消と美容効果を同時に。</p>
+                </div>
+                <div class="service-card">
+                    <h3>ブライダルエステ</h3>
+                    <p>人生最高の日のために。特別な日に向けた集中ケアプログラム。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prices" class="section">
+        <div class="container">
+            <h2 class="section-title">料金表</h2>
+            
+            <div class="price-table">
+                <div class="price-table-header">フェイシャルエステ</div>
+                <div class="price-item">
+                    <span class="price-name">ベーシックフェイシャル（60分）</span>
+                    <span class="price-amount">¥8,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">アンチエイジングフェイシャル（90分）</span>
+                    <span class="price-amount">¥12,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">ディープクレンジング（75分）</span>
+                    <span class="price-amount">¥10,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">美白集中ケア（90分）</span>
+                    <span class="price-amount">¥13,000</span>
+                </div>
+            </div>
+
+            <div class="price-table">
+                <div class="price-table-header">ボディエステ</div>
+                <div class="price-item">
+                    <span class="price-name">全身リラクゼーション（90分）</span>
+                    <span class="price-amount">¥15,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">部分痩身コース（60分）</span>
+                    <span class="price-amount">¥12,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">セルライトケア（75分）</span>
+                    <span class="price-amount">¥14,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">背中集中ケア（45分）</span>
+                    <span class="price-amount">¥8,000</span>
+                </div>
+            </div>
+
+            <div class="price-table">
+                <div class="price-table-header">脱毛</div>
+                <div class="price-item">
+                    <span class="price-name">両脇（1回）</span>
+                    <span class="price-amount">¥3,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">両腕（1回）</span>
+                    <span class="price-amount">¥8,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">両足（1回）</span>
+                    <span class="price-amount">¥12,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">全身脱毛（1回）</span>
+                    <span class="price-amount">¥25,000</span>
+                </div>
+            </div>
+
+            <div class="price-table">
+                <div class="price-table-header">その他メニュー</div>
+                <div class="price-item">
+                    <span class="price-name">ネイルケア（ベーシック）</span>
+                    <span class="price-amount">¥5,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">アロマテラピー（60分）</span>
+                    <span class="price-amount">¥9,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">ブライダルエステ（3回コース）</span>
+                    <span class="price-amount">¥45,000</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">初回カウンセリング</span>
+                    <span class="price-amount">無料</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">サロンについて</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 style="color: #ad6a8f; margin-bottom: 1rem;">心も体も美しく</h3>
+                    <p>私たちのサロンは、お客様一人一人の「なりたい」を大切にしています。最新の技術と丁寧なカウンセリングで、あなたの理想の美しさを実現します。</p>
+                    <br>
+                    <p>清潔で落ち着いた空間で、日頃の疲れを癒しながら美しさに磨きをかけませんか。経験豊富なスタッフが、あなたの美容と健康をトータルサポートいたします。</p>
+                    <br>
+                    <p>初回は無料カウンセリングを実施しており、お客様のご要望やお悩みをしっかりとお聞きした上で、最適なプランをご提案いたします。</p>
+                </div>
+                <div class="about-image">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ad6a8f; font-size: 1.2rem;">
+                        美しい空間でお待ちしております
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ・ご予約</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>お電話でのご予約</h3>
+                    <p style="font-size: 1.3rem; color: #ad6a8f; font-weight: bold;">03-1234-5678</p>
+                    <p>営業時間：10:00-19:00</p>
+                    <p>定休日：月曜日</p>
+                </div>
+                <div class="contact-item">
+                    <h3>アクセス</h3>
+                    <p>〒123-4567<br>東京都渋谷区美容町1-2-3<br>美容ビル2F</p>
+                    <p>JR渋谷駅より徒歩5分</p>
+                </div>
+                <div class="contact-item">
+                    <h3>オンライン予約</h3>
+                    <p>24時間受付可能</p>
+                    <a href="#" class="cta-button" style="display: inline-block; margin-top: 1rem;">WEB予約</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Beauty Salon. All rights reserved.</p>
+            <p>あなたのなりたいをかなえるサロン</p>
+        </div>
+    </footer>
+</body>
+</html>
